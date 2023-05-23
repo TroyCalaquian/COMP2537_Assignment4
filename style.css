@@ -2,17 +2,23 @@ body {
   margin: 0px;
 }
 
+#difficulty input[type="radio"] {
+  display: none;
+}
+
 #game_grid {
+  box-sizing: content-box;
   border: 2px tomato solid;
-  width: 600px;
-  height: 400px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .card {
-  width: 33.3%;
+  background-color: transparent;
+  width: 200px;
+  height: 200px;
   position: relative;
   transition: transform 1s;
   perspective: 1000px;
