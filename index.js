@@ -70,6 +70,8 @@ const setup = async () => {
           console.log("match");
           $(`#${firstCard.id}`).parent().off("click");
           $(`#${secondCard.id}`).parent().off("click");
+          $(`#${firstCard.id}`).parent().addClass("matched");
+          $(`#${secondCard.id}`).parent().addClass("matched");
           firstCard = undefined;
           secondCard = undefined;
           setTimeout(() => {
@@ -84,6 +86,7 @@ const setup = async () => {
             firstCard = undefined;
             secondCard = undefined;
             isFlipping = false; // Set flipping flag to false after flipping is done
+            flipAllCards();
           }, 1000);
         }
       }
@@ -221,5 +224,26 @@ function shuffle(array) {
 
   return array;
 }
+
+function flipAllCards() {
+  var unmatchedCards = $(".card:not(.matched)");
+
+  // Generate a random number between 0 and 1
+  var randomValue = Math.random();
+
+  // Set the probability of flipping the cards to 10% (0.1)
+  var flipProbability = 0.1;
+
+  // Check if the random number is less than the flipProbability
+  if (randomValue < flipProbability) {
+    alert("Power up!");
+    unmatchedCards.toggleClass("flip");
+
+    setTimeout(() => {
+      unmatchedCards.toggleClass("flip");
+    }, 1000);
+  }
+}
+
 
 $(document).ready(setup);
