@@ -96,11 +96,13 @@ const setup = async () => {
   // Add event listener to the Dark theme button
   $("#dark").on("click", function () {
     $("#game_grid").css("background-color", "black");
+    $(".card").css("background-color", "black");
   });
 
   // Add event listener to the Light theme button
   $("#light").on("click", function () {
     $("#game_grid").css("background-color", "white");
+    $(".card").css("background-color", "white");
   });
 };
 
@@ -117,6 +119,17 @@ function startTimer() {
     $("#timer").append(
       `<h1>You have ${totalTime} seconds! Time passed: ${timePassed}s</h1>`
     );
+
+    // Check if the time has reached zero
+    if (timePassed >= totalTime) {
+      // Perform actions when time runs out
+      clearInterval(timerInterval); // Stop the timer
+      // Add your code here to handle when the time runs out
+      $("header").empty();
+      $("header").append(`<h1>Time's up!</h1>`);
+      $("#game_grid").empty();
+      $("#game_grid").append(`<h1><a href="index.html">Try Again!</h1>`);
+    }
   }, 1000);
 }
 
