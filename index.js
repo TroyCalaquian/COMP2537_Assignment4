@@ -169,9 +169,10 @@ async function fillHTML(difficulty, totalPairs, totalTime) {
       randomNumber = Math.floor(Math.random() * 810);
     }
     currPoke.push(randomNumber);
-    var pokeSprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${randomNumber}.png`;
+    // Replace!
+    var responce = await axios.get(`https://pokeapi.co/api/v2/pokemon/${randomNumber}`)
     for (let j = 0; j < 2; j++) {
-      cardImages.push(`${pokeSprite}`);
+      cardImages.push(`${responce.data.sprites.other['official-artwork'].front_default}`);
     }
   }
 
